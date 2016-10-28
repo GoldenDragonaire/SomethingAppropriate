@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{3C2799C5-3568-5DCD-55E7-ADEF056016FB}") = "Student Platformer", "Assembly-CSharp.csproj", "{3C320A6A-48FC-4B99-0C50-375062926E33}"
+EndProject
+Project("{3C2799C5-3568-5DCD-55E7-ADEF056016FB}") = "Student Platformer", "Assembly-UnityScript.unityproj", "{AE4BCECA-66CE-8FCB-12FA-BC4FB5C690EA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3C320A6A-48FC-4B99-0C50-375062926E33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C320A6A-48FC-4B99-0C50-375062926E33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C320A6A-48FC-4B99-0C50-375062926E33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C320A6A-48FC-4B99-0C50-375062926E33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE4BCECA-66CE-8FCB-12FA-BC4FB5C690EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE4BCECA-66CE-8FCB-12FA-BC4FB5C690EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE4BCECA-66CE-8FCB-12FA-BC4FB5C690EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE4BCECA-66CE-8FCB-12FA-BC4FB5C690EA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
