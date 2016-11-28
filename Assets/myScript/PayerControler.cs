@@ -4,7 +4,8 @@ using System.Collections;
 public class PayerControler : MonoBehaviour {
 
 	public bool facingRight = true;	
-	public bool jump = false;	
+	public bool jump = false;
+	public bool pew = false;	
 
 	Animator animator;
 
@@ -14,9 +15,11 @@ public class PayerControler : MonoBehaviour {
 	const int STATE_IDLE = 0;
 	const int STATE_WALK = 1;
 	const int STATE_JUMP = 2;
+	const int STATE_ATTACK = 3;
 	int _currentAnimationState = STATE_IDLE;
 	private Transform groundCheck;
 	private bool grounded = false;
+	int shotCount = 250;
 
 	void Awake()
 	{
@@ -30,20 +33,22 @@ public class PayerControler : MonoBehaviour {
 
 		if(Input.GetButtonDown("Jump") && grounded)
 			jump = true;
+		if(Input.GetButtonDown("Fire3") && grounded && Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) == 0 && shotCount == 0)
+			pew = true;
 	}
 
 	void FixedUpdate ()
 	{
 		float h = Input.GetAxis("Horizontal");
 
-		if (h * GetComponent<Rigidbody2D> ().velocity.x < maxSpeed) {
+		if (h * GetComponent<Rigidbody2D> ().velocity.x < maxSpeed && animator.GetInteger("state") != 3) {
 			GetComponent<Rigidbody2D> ().AddForce (Vector2.right * h * moveForce);
 		}
 
-		if (Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) > 0 && grounded)
+		if (Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) > 0 && grounded && shotCount <= 200)
 			changeState(STATE_WALK);
 
-		if (Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) == 0 && grounded)
+		if (Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) == 0 && grounded && shotCount <= 200)
 			changeState(STATE_IDLE);
 
 		if(Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) > maxSpeed)
@@ -53,7 +58,7 @@ public class PayerControler : MonoBehaviour {
 			Flip();
 		else if(h < 0 && facingRight)
 			Flip();
-
+		
 		if(jump)
 		{
 			changeState(STATE_JUMP);
@@ -62,15 +67,26 @@ public class PayerControler : MonoBehaviour {
 
 			jump = false;
 		}
+
+		if (pew) {
+			changeState (STATE_ATTACK);
+			shotCount += 250;
+			pew = false;
+		} else if (shotCount > 0) {
+			shotCount -= 1;
+		}
+
 	}
 
 	void Flip ()
 	{
-		facingRight = !facingRight;
+		if (animator.GetInteger ("state") != 3) {
+			facingRight = !facingRight;
 
-		Vector3 theScale = transform.localScale;
-		theScale.x *= -1;
-		transform.localScale = theScale;
+			Vector3 theScale = transform.localScale;
+			theScale.x *= -1;
+			transform.localScale = theScale;
+		}
 	}
 
 	void changeState(int state){
@@ -90,6 +106,10 @@ public class PayerControler : MonoBehaviour {
 
 		case STATE_IDLE:
 			animator.SetInteger ("state", STATE_IDLE);
+			break;
+
+		case STATE_ATTACK:
+			animator.SetInteger ("state", STATE_ATTACK);
 			break;
 		}
 
