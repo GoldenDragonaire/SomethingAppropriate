@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\PlayerControl.cs" />
      <Compile Include="Assets\myScript\CamFollow.cs" />
+     <Compile Include="Assets\myScript\Main Menu\playDemo.cs" />
      <Compile Include="Assets\myScript\PayerControler.cs" />
      <None Include="Assets\Scifi Art Demo Pack\Demo Readme.txt" />
  <Reference Include="UnityEngine.UI">

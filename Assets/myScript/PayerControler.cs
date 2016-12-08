@@ -14,7 +14,7 @@ public class PayerControler : MonoBehaviour {
 	public float moveForce = 365f;
 	public float maxSpeed = 5f;
 	public float jumpForce = 1000f;
-	public float wallForce = 50000f;
+	public float wallForce = 500f;
 	const int STATE_IDLE = 0;
 	const int STATE_WALK = 1;
 	const int STATE_JUMP = 2;
@@ -36,6 +36,9 @@ public class PayerControler : MonoBehaviour {
 	
 	void Update()
 	{
+		if (Input.GetButtonDown("Pause"))
+			Application.LoadLevel("pauseMenu");	
+	
 		grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));  
 
 		wallTrump = Physics2D.Linecast(transform.position, wallCheck.position, 1 << LayerMask.NameToLayer("Ground"));
@@ -43,6 +46,10 @@ public class PayerControler : MonoBehaviour {
 		if(Input.GetButtonDown("Fire3") && grounded && Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) == 0 && shotCount == 0)
 			pew = true;
 
+		if (grounded || wallTrump)
+			this.GetComponent<Rigidbody2D>().drag = 5;
+		if (!grounded && !wallTrump)
+			this.GetComponent<Rigidbody2D>().drag = 0;
 
 			
 		if (Input.GetButtonDown ("Jump") && (wallTrump || grounded)) 
@@ -106,7 +113,7 @@ public class PayerControler : MonoBehaviour {
 
 	void Flip ()
 	{
-		if (animator.GetInteger ("state") != 3) {
+		if (animator.GetInteger ("state") != 3) 
 			facingRight = !facingRight;
 
 
