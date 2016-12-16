@@ -32,12 +32,12 @@ public class PayerControler : MonoBehaviour {
 		groundCheck = transform.Find("groundCheck");
 		animator = this.GetComponent<Animator>();
 		wallCheck = transform.Find("wallCheck");
+		DontDestroyOnLoad(transform.gameObject);
 	}
 	
 	void Update()
 	{
-		if (Input.GetButtonDown("Pause"))
-			Application.LoadLevel("pauseMenu");	
+		
 	
 		grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));  
 
@@ -48,8 +48,7 @@ public class PayerControler : MonoBehaviour {
 
 		if (grounded || wallTrump)
 			this.GetComponent<Rigidbody2D>().drag = 5;
-		if (!grounded && !wallTrump)
-			this.GetComponent<Rigidbody2D>().drag = 0;
+		else this.GetComponent<Rigidbody2D>().drag = 0;
 
 			
 		if (Input.GetButtonDown ("Jump") && (wallTrump || grounded)) 
@@ -63,7 +62,7 @@ public class PayerControler : MonoBehaviour {
 
 		if (h * GetComponent<Rigidbody2D> ().velocity.x < maxSpeed) {
 			if (grounded) GetComponent<Rigidbody2D> ().AddForce (Vector2.right * h * moveForce);
-			else GetComponent<Rigidbody2D> ().AddForce (Vector2.right * h * moveForce/10);
+			else GetComponent<Rigidbody2D> ().AddForce (Vector2.right * h * moveForce/30);
 
 		}
 
@@ -85,11 +84,10 @@ public class PayerControler : MonoBehaviour {
 		{
 			changeState(STATE_JUMP);
 
-			if (wallTrump) { //if you're next to a wall 
-				Flip ();
-				GetComponent<Rigidbody2D> ().AddForce (new Vector2 ((wallForce * facing), 0f));
+			if (wallTrump) //if you're next to a wall 
+				GetComponent<Rigidbody2D> ().AddForce (new Vector2 ((wallForce * facing * -1), 0f));
 
-			}
+		
 			GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpForce));
 
 			jump = false;
