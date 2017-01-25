@@ -14,9 +14,11 @@ public class Pause : MonoBehaviour {
 			Debug.Log ("pause");
 			if (paused) //unpause the game
 				Time.timeScale = 1.0f;
-			else
+			else{
 				Time.timeScale = 0.0f; //pause the game
-		paused = !paused; //toggle the pause 
+			//private Vector3 prePauseTransform = transform.position;
+			}
+				paused = !paused; //toggle the pause 
 	}
 }
 }

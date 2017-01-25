@@ -45,12 +45,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\LoadGame.cs" />
      <Compile Include="Assets\PlayerControl.cs" />
+     <Compile Include="Assets\WinGame.cs" />
      <Compile Include="Assets\myScript\CamFollow.cs" />
+     <Compile Include="Assets\myScript\LoadGame.cs" />
      <Compile Include="Assets\myScript\Main Menu\playDemo.cs" />
      <Compile Include="Assets\myScript\Pause.cs" />
      <Compile Include="Assets\myScript\PayerControler.cs" />
+     <Compile Include="Assets\myScript\ShowPaused.cs" />
      <None Include="Assets\Scifi Art Demo Pack\Demo Readme.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

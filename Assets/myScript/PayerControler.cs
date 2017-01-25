@@ -32,7 +32,7 @@ public class PayerControler : MonoBehaviour {
 		groundCheck = transform.Find("groundCheck");
 		animator = this.GetComponent<Animator>();
 		wallCheck = transform.Find("wallCheck");
-		DontDestroyOnLoad(transform.gameObject);
+		//DontDestroyOnLoad(transform.gameObject);
 	}
 	
 	void Update()
