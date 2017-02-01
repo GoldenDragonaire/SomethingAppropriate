@@ -12,6 +12,7 @@ public class playDemo : MonoBehaviour {
 	}
 
 	void TaskOnClick(){
+		Time.timeScale = 1.0f;
 		Application.LoadLevel (level);
 	}
 }
