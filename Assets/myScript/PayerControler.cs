@@ -106,7 +106,7 @@ public class PayerControler : MonoBehaviour {
 
 	void Flip ()
 	{
-		if (animator.GetInteger ("state") != 3) {
+		if (animator.GetInteger ("state") != 3)
 			facingRight = !facingRight;
 
 
