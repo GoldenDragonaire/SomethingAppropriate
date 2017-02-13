@@ -48,14 +48,13 @@
      <Compile Include="Assets\PlayerControl.cs" />
      <Compile Include="Assets\SetParticleSortingLayer.cs" />
      <Compile Include="Assets\WinGame.cs" />
+     <Compile Include="Assets\myScript\BownArrow\Gun.cs" />
+     <Compile Include="Assets\myScript\BownArrow\Rocket.cs" />
      <Compile Include="Assets\myScript\CamFollow.cs" />
-     <Compile Include="Assets\myScript\Gun.cs" />
      <Compile Include="Assets\myScript\LoadGame.cs" />
      <Compile Include="Assets\myScript\Main Menu\playDemo.cs" />
      <Compile Include="Assets\myScript\Pause.cs" />
      <Compile Include="Assets\myScript\PayerControler.cs" />
-     <Compile Include="Assets\myScript\PewPew.cs" />
-     <Compile Include="Assets\myScript\Rocket.cs" />
      <Compile Include="Assets\myScript\ShowPaused.cs" />
      <Compile Include="Assets\pew\Destroyer.cs" />
      <None Include="Assets\Scifi Art Demo Pack\Demo Readme.txt" />

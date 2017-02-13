@@ -25,11 +25,11 @@ public class Rocket : MonoBehaviour
 	void OnTriggerEnter2D (Collider2D col) 
 	{
 		// If it hits an enemy...
-		/*
-		if(col.tag == "Enemy")
+
+		if(col.tag.Contains("Enemy"))
 		{
 			// ... find the Enemy script and call the Hurt function.
-			col.gameObject.GetComponent<Enemy>().Hurt();
+		//	col.gameObject.GetComponent<Enemy>().Hurt();
 
 			// Call the explosion instantiation.
 			OnExplode();
@@ -37,9 +37,9 @@ public class Rocket : MonoBehaviour
 			// Destroy the rocket.
 			Destroy (gameObject);
 		}
-		*/
+
 		// Otherwise if the player manages to shoot himself...
-		//else 
+		else 
 		if(col.gameObject.tag != "Player")
 		{
 			// Instantiate the explosion and destroy the rocket.

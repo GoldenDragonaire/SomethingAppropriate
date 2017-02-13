@@ -7,7 +7,7 @@ public class PayerControler : MonoBehaviour {
 	public bool pew = false;	
 	public int facing = 1;
 	public bool jump = false;	
-
+	private float h = 0;
 
 	Animator animator;
 
@@ -57,7 +57,9 @@ public class PayerControler : MonoBehaviour {
 
 	void FixedUpdate ()
 	{
-		float h = Input.GetAxis("Horizontal");
+		if (_currentAnimationState != 3) {
+			h = Input.GetAxis ("Horizontal");
+		}
 
 
 		if (h * GetComponent<Rigidbody2D> ().velocity.x < maxSpeed) {
@@ -97,7 +99,7 @@ public class PayerControler : MonoBehaviour {
 		if (pew) {
 			changeState (STATE_ATTACK);
 			shotCount += 250;
-			pew = false;
+			//pew = false;
 		} else if (shotCount > 0) {
 			shotCount -= 1;
 		}
@@ -143,6 +145,7 @@ public class PayerControler : MonoBehaviour {
 			break;
 
 		case STATE_ATTACK:
+			Debug.Log ("attackanimation");
 			animator.SetInteger ("state", STATE_ATTACK);
 			break;
 		}
