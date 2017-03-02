@@ -4,47 +4,57 @@ using System.Collections;
 public class PayerControler : MonoBehaviour {
 
 	public bool facingRight = true;	
-	public bool pew = false;	
-	public int facing = 1;
-	public bool jump = false;	
+	public bool pew = false;	//can fire?
+	public int facing = 1; //right
+	public bool jump = false;	//can jump?
 	private float h = 0;
 
 	Animator animator;
 
 	public float moveForce = 365f;
-	public float maxSpeed = 5f;
+	public float maxSpeed = 5f;			//movement dynamics
 	public float jumpForce = 1000f;
 	public float wallForce = 500f;
 	const int STATE_IDLE = 0;
-	const int STATE_WALK = 1;
+	const int STATE_WALK = 1;	//references for animations
 	const int STATE_JUMP = 2;
 	const int STATE_ATTACK = 3;
 	int _currentAnimationState = STATE_IDLE;
-	private Transform groundCheck;
+	private Transform groundCheck; //ability to jump?
 	private Transform wallCheck;
 	private bool grounded = false;
 
 	private bool wallTrump = false;
-	int shotCount = 250;
+	//bow = GameObject.Find("bow");
+	public Gun gun;
+	int shotCount = 0; //used to make a delay between shots
+	int maxShotDelay = 100; //used to determine the allowed time shot
 
 	void Awake()
 	{
 		groundCheck = transform.Find("groundCheck");
 		animator = this.GetComponent<Animator>();
 		wallCheck = transform.Find("wallCheck");
+		gun = gameObject.GetComponentInChildren<Gun>();
+
 		//DontDestroyOnLoad(transform.gameObject);
+
 	}
-	
+
 	void Update()
 	{
 		
 	
-		grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));  
-
+		//grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));  
+		if (this.collider != null) {
+			grounded = true;
+		}
 		wallTrump = Physics2D.Linecast(transform.position, wallCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 
-		if(Input.GetButtonDown("Fire3") && grounded && Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) == 0 && shotCount == 0)
+		if (Input.GetButtonDown ("Fire3") && grounded && Mathf.Abs (GetComponent<Rigidbody2D> ().velocity.x) == 0 && shotCount == 0) {
 			pew = true;
+			Debug.Log ("pewtrue");
+		}
 
 		if (grounded || wallTrump)
 			this.GetComponent<Rigidbody2D>().drag = 5;
@@ -68,10 +78,10 @@ public class PayerControler : MonoBehaviour {
 
 		}
 
-		if (Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) > 0 && grounded && shotCount <= 200)
+		if (Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) > 0 && grounded && shotCount <= maxShotDelay - 47)
 			changeState(STATE_WALK);
 
-		if (Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) == 0 && grounded && shotCount <= 200)
+		if (Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) == 0 && grounded && shotCount <= maxShotDelay - 47)
 			changeState(STATE_IDLE);
 
 		if(Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) > maxSpeed)
@@ -96,10 +106,14 @@ public class PayerControler : MonoBehaviour {
 		}
 
 
-		if (pew) {
+		if (pew && shotCount == 0) {
+			Debug.Log ("pew");
 			changeState (STATE_ATTACK);
-			shotCount += 250;
-			//pew = false;
+			shotCount += 100;
+		}
+		else if (pew && shotCount == maxShotDelay - 20){
+			gun.fire();
+			pew = false;
 		} else if (shotCount > 0) {
 			shotCount -= 1;
 		}

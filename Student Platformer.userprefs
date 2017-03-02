@@ -1,12 +1,29 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\myScript\BownArrow\Gun.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\myScript\PayerControler.cs">
     <Files>
-      <File FileName="Assets\myScript\PayerControler.cs" Line="99" Column="10" />
-      <File FileName="Assets\myScript\BownArrow\Rocket.cs" Line="32" Column="5" />
+      <File FileName="Assets\myScript\PayerControler.cs" Line="111" Column="16" />
+      <File FileName="Assets\myScript\BownArrow\Gun.cs" Line="4" Column="33" />
+      <File FileName="Assets\myScript\BownArrow\Rocket.cs" Line="1" Column="1" />
       <File FileName="Assets\pew\Destroyer.cs" Line="1" Column="1" />
-      <File FileName="Assets\myScript\BownArrow\Gun.cs" Line="24" Column="18" />
+      <File FileName="Assets\myScript\Pause.cs" Line="1" Column="1" />
+      <File FileName="Assets\myScript\LoadGame.cs" Line="1" Column="1" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Student Platformer" expanded="True">
+            <Node name="Assembly-CSharp" expanded="True">
+              <Node name="myScript" expanded="True">
+                <Node name="BownArrow" expanded="True" />
+                <Node name="PayerControler.cs" selected="True" />
+              </Node>
+              <Node name="pew" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
