@@ -33,7 +33,9 @@ public class Rocket : MonoBehaviour
 
 			// Call the explosion instantiation.
 			OnExplode();
-
+			Debug.Log ("Rocket on Enemy");
+			//tell the object it has been hit
+			col.gameObject.GetComponent<ifHit>().hit();
 			// Destroy the rocket.
 			Destroy (gameObject);
 		}

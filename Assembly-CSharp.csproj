@@ -56,6 +56,7 @@
      <Compile Include="Assets\myScript\Pause.cs" />
      <Compile Include="Assets\myScript\PayerControler.cs" />
      <Compile Include="Assets\myScript\ShowPaused.cs" />
+     <Compile Include="Assets\myScript\ifHit.cs" />
      <Compile Include="Assets\pew\Destroyer.cs" />
      <None Include="Assets\Scifi Art Demo Pack\Demo Readme.txt" />
  <Reference Include="UnityEngine.UI">

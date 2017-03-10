@@ -45,15 +45,12 @@ public class PayerControler : MonoBehaviour {
 	{
 		
 	
-		//grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));  
-		if (this.collider != null) {
-			grounded = true;
-		}
+		grounded = Physics2D.Linecast (transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));  
+
 		wallTrump = Physics2D.Linecast(transform.position, wallCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 
 		if (Input.GetButtonDown ("Fire3") && grounded && Mathf.Abs (GetComponent<Rigidbody2D> ().velocity.x) == 0 && shotCount == 0) {
 			pew = true;
-			Debug.Log ("pewtrue");
 		}
 
 		if (grounded || wallTrump)
@@ -107,7 +104,6 @@ public class PayerControler : MonoBehaviour {
 
 
 		if (pew && shotCount == 0) {
-			Debug.Log ("pew");
 			changeState (STATE_ATTACK);
 			shotCount += 100;
 		}
@@ -159,7 +155,6 @@ public class PayerControler : MonoBehaviour {
 			break;
 
 		case STATE_ATTACK:
-			Debug.Log ("attackanimation");
 			animator.SetInteger ("state", STATE_ATTACK);
 			break;
 		}
